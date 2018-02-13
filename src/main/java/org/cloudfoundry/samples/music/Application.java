@@ -13,6 +13,6 @@ public class Application extends SpringBootServletInitializer {
                 initializers(new SpringApplicationContextInitializer())
                 .application()
                 .run(args);
-        //System.out.println(" Apllication class 123567");
+        //System.out.println(" Apllication class 12356789");
     }
 }
