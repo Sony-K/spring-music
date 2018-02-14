@@ -6,9 +6,11 @@ node('master') {
     stage('Build') {
         println("Entering Build Stage")
          if (isUnix()) {
+                println("UNIX Build Stage")
                 sh './gradlew clean build'
             } else {
-                bat 'gradlew.bat clean build'
+                println("WIN Build Stage")
+                bat 'gradlew clean build'
             }
     }
     stage('Test') {
