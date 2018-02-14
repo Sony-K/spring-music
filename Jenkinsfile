@@ -10,7 +10,7 @@ node('master') {
                 sh './gradlew clean build'
             } else {
                 println("WIN Build Stage")
-                call 'echo Hello'
+                sh 'echo Hello'
             }
     }
     stage('Test') {
