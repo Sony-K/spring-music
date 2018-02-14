@@ -1,6 +1,11 @@
 node('master') {
+    stage('Code Checkout') {
+        println("Entering Code checkout Stage")
+        checkout scm
+    }
     stage('Build') {
         println("Entering Build Stage")
+
     }
     stage('Test') {
         println("Entering Test Stage")
