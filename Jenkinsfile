@@ -1,4 +1,4 @@
-node {
+node('master') {
     stage('Build') {
         println("Entering Build Stage")
     }
