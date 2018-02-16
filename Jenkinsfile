@@ -14,7 +14,7 @@ node('master') {
                 echo " CURRENT DIRECTORY : ${currentpwd}"
                 def currentpwdaft = currentpwd.replaceAll("\\\\", "/")
                 echo " CURRENT DIRECTORY AFTER : ${currentpwdaft}"
-                bat 'C:/Users/673326/.jenkins/workspace/l-jenkins-pcf-multipipeline-EXSCE6PQGP7HSMBTUHHLC5FN3VOLXKFWTZXP46YBY5PXUEMVHODA/gradlew clean build -x test'
+                bat '${currentpwdaft}/gradlew clean build -x test'
                 //bat returnStatus: true, script: 'gradlew clean build'
             }
     }
