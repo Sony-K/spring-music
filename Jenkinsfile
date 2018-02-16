@@ -24,7 +24,9 @@ node('master') {
         println("Teardown PCF apps and services")
         try{
             withCredentials([usernamePassword(credentialsId: 'pcf-credential', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                cf login -u user -p pass -a api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
+                bat '''
+                    cf login -u "$user" -p "$pass" -a api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
+                '''
                 //cf delete spring-music -f
                 //cf delete-service music-database -f
             }
