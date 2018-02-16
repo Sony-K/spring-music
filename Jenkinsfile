@@ -12,7 +12,7 @@ node('master') {
                 println("WIN Build Stage")
                 def currentpwd = pwd();
                 echo " CURRENT DIRECTORY : ${currentpwd}"
-                bat 'call ${currentpwd}\gradlew clean build -x test'
+                bat 'call ${currentpwd}/gradlew clean build -x test'
                 //bat returnStatus: true, script: 'gradlew clean build'
             }
     }
