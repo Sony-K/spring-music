@@ -14,7 +14,8 @@ node('master') {
                 echo " CURRENT DIRECTORY : ${currentpwd}"
                 def currentpwdaft = currentpwd.replaceAll("\\\\", "/")
                 echo " CURRENT DIRECTORY AFTER : ${currentpwdaft}"
-                sh "${currentpwdaft}/gradlew clean build -x test"
+                //sh "${currentpwdaft}/gradlew clean build -x test"
+                sh "gradlew clean build -x test"
             }
     }
     stage('Test') {
