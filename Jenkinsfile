@@ -22,11 +22,11 @@ node('master') {
             bat 'call cf delete spring-musics -f'
             bat 'call cf delete-service music-database -f'
         } catch(err){
-            currentBuild.result = 'FAILURE'
+            currentBuild.result = 'UNSTABLE'
             echo "CF delete app/service failed"
             //println(e.getMessage())
             echo "Caught exception: ${err}"
-            throw err
+            //throw err
             //step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
             //mail bcc: '', body: 'test jenkins ', cc: '', from: '', replyTo: '', subject: 'test', to: 'nandagopan.gs@cognizant.com'
         }
