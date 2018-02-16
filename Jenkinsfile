@@ -16,7 +16,7 @@ node('master') {
                 echo " CURRENT DIRECTORY AFTER : ${currentpwdaft}"
                 //bat "${currentpwdaft}/gradlew clean build -x test"
                 sh '''
-                   .gradlew clean build -x test
+                   gradlew clean build -x test
                 '''
             }
     }
