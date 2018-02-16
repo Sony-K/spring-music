@@ -16,6 +16,8 @@ node('master') {
     }
     stage('Test') {
         println("Entering Test Stage")
+        def currentpwd = pwd();
+        echo " CURRENT DIRECTORY : ${currentpwd}"
     }
     stage('Teardown'){
         println("Teardown PCF apps and services")
