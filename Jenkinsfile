@@ -25,7 +25,7 @@ node('master') {
         try{
             withCredentials([usernamePassword(credentialsId: 'pcf-credential', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 bat '''
-                    cf login -u "$user" -p "$pass" -a api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
+                    cf login -u $user -p $pass -a api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
                     cf delete spring-music -f
                     cf delete-service music-database -f
                 '''
