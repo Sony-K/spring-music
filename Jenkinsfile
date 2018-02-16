@@ -25,7 +25,7 @@ node('master') {
         try{
             withCredentials([usernamePassword(credentialsId: 'pcf-credential', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 bat '''
-                    call cf login -u $user -p $pass -a api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
+                    call cf login -u $user -p $pass -a https://api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
                 '''
                 bat '''
                     call cf delete spring-music -f
@@ -38,7 +38,7 @@ node('master') {
             //bat 'call cf delete spring-music -f'
             //bat 'call cf delete-service music-database -f'
         } catch(err){
-            currentBuild.result = 'UNSTABLE'
+            currentBuild.result = 'FAILURE'
             echo "CF delete app/service failed"
             //println(e.getMessage())
             echo "Caught exception: ${err}"
