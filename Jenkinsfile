@@ -16,7 +16,7 @@ node('master') {
                 echo " CURRENT DIRECTORY AFTER : ${currentpwdaft}"
                 //bat "${currentpwdaft}/gradlew clean build -x test"
                 //sh "ls -ltra"
-                sh "${currentpwd}\gradlew clean build -x test"
+                sh "${currentpwd}\\gradlew clean build -x test"
             }
     }
     stage('Test') {
