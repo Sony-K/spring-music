@@ -11,7 +11,7 @@ node('master') {
             } else {
                 println("WIN Build Stage")
                 //bat 'call gradlew clean build -x test'
-                bat returnStatus: true, script: 'gradlew clean build'
+                //bat returnStatus: true, script: 'gradlew clean build'
             }
     }
     stage('Test') {
