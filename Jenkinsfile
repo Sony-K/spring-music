@@ -10,14 +10,14 @@ node('master') {
                 sh './gradlew clean build'
             } else {
                 println("WIN Build Stage")
-                //bat 'call gradlew clean build -x test'
+                def currentpwd = pwd();
+                echo " CURRENT DIRECTORY : ${currentpwd}"
+                bat 'call ${currentpwd}\gradlew clean build -x test'
                 //bat returnStatus: true, script: 'gradlew clean build'
             }
     }
     stage('Test') {
         println("Entering Test Stage")
-        def currentpwd = pwd();
-        echo " CURRENT DIRECTORY : ${currentpwd}"
     }
     stage('Teardown'){
         println("Teardown PCF apps and services")
