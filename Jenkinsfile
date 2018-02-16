@@ -25,13 +25,13 @@ node('master') {
         try{
             withCredentials([usernamePassword(credentialsId: 'pcf-credential', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 bat '''
-                    cf login -u $user -p $pass -a api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
+                    call cf login -u $user -p $pass -a api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
                 '''
                 bat '''
-                    cf delete spring-music -f
+                    call cf delete spring-music -f
                 '''
                 bat '''
-                    cf delete-service music-database -f
+                    call cf delete-service music-database -f
                 '''
                 echo "TEAR DOWN COMPLETE"
             }
