@@ -14,7 +14,7 @@ node('master') {
                 echo " CURRENT DIRECTORY : ${currentpwd}"
                 def currentpwdaft = currentpwd.replaceAll("\\\\", "/")
                 echo " CURRENT DIRECTORY AFTER : ${currentpwdaft}"
-                bat "${currentpwdaft}/gradlew clean build -x test"
+                sh "${currentpwdaft}/gradlew clean build -x test"
             }
     }
     stage('Test') {
@@ -24,13 +24,13 @@ node('master') {
         println("Teardown PCF apps and services")
         try{
             withCredentials([usernamePassword(credentialsId: 'pcf-credential', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                bat '''
+                sh '''
                     cf login -u $user -p $pass -a https://api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
                 '''
-                bat '''
+                sh '''
                     cf delete spring-music -f
                 '''
-                bat '''
+                sh '''
                     cf delete-service music-database -f
                 '''
                 echo "TEAR DOWN COMPLETE"
