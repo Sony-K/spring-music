@@ -27,7 +27,12 @@ node('master') {
                 bat '''
                     cf login -u $user -p $pass -a https://api.system.dev.digifabricpcf.com -o sunil-khobragade -s sandbox
                 '''
-
+                bat '''
+                    cf delete spring-music -f
+                '''
+                bat '''
+                    cf delete-service music-database -f
+                '''
                 echo "TEAR DOWN COMPLETE"
             }
             //bat 'call cf delete spring-music -f'
