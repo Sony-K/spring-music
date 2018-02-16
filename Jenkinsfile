@@ -22,7 +22,7 @@ node('master') {
     stage('Teardown'){
         println("Teardown PCF apps and services")
         try{
-            bat 'call cf delete spring-musics -f'
+            bat 'call cf delete spring-music -f'
             bat 'call cf delete-service music-database -f'
         } catch(err){
             currentBuild.result = 'UNSTABLE'
