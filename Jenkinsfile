@@ -1,7 +1,7 @@
 node('master') {
     stage('Code Checkout') {
         println("Entering Code checkout Stage")
-        //checkout scm
+        checkout scm
     }
     stage('Build') {
         println("Entering Build Stage")
@@ -10,7 +10,7 @@ node('master') {
                 sh './gradlew clean build'
             } else {
                 println("WIN Build Stage")
-                //bat 'call gradlew clean build -x test'
+                bat 'call gradlew clean build -x test'
             }
     }
     stage('Test') {
@@ -27,7 +27,7 @@ node('master') {
             throw ${err}
             currentBuild.result = 'FAILURE'
             //step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
-            mail bcc: '', body: 'test jenkins ', cc: '', from: '', replyTo: '', subject: 'test', to: 'nandagopan.gs@cognizant.com'
+            //mail bcc: '', body: 'test jenkins ', cc: '', from: '', replyTo: '', subject: 'test', to: 'nandagopan.gs@cognizant.com'
         }
     }
     stage('Deploy') {
@@ -56,7 +56,7 @@ node('master') {
         ) */
         
         //pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'nanda-pcf', organization: 'nsreekala-PAL-JAN8', selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.cumuluslabs.io'
-        pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'nanda-pcf', organization: 'nsreekala-PAL-JAN8', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.cumuluslabs.io'
+        pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'pcf-credential', organization: 'sunil-khobragade', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.dev.digifabricpcf.com'
     }
     
     stage('Notify'){
