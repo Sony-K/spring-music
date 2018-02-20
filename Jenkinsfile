@@ -9,13 +9,8 @@ node('master') {
                 println("UNIX Build Stage")
                 sh './gradlew clean build'
             } else {
-                println("WIN Build Stage")
-                def currentpwd = pwd();
-                echo " CURRENT DIRECTORY : ${currentpwd}"
-                def currentpwdaft = currentpwd.replaceAll("\\\\", "/")
-                echo " CURRENT DIRECTORY AFTER : ${currentpwdaft}"
-                sh "${currentpwdaft}/gradlew clean build -x test"
-                //sh 'gradlew clean build -x test'
+                println("WIN Build Stage using cygwin")
+                sh 'gradlew clean build -x test'
             }
     }
     stage('Test') {
@@ -49,35 +44,12 @@ node('master') {
         }
     }
     stage('Deploy') {
-        when {
+        /* when {
             expression {
                 currentBuild.result = 'SUCCESS'
             }
-        }   
+        }  */
         println("Entering Deploy Stage")
-        /*pushToCloudFoundry(
-            target: 'api.system.cumuluslabs.io',
-            organization: 'nsreekala-PAL-JAN8',
-            cloudSpace: 'sandbox',
-            credentialsId: 'nanda-pcf',
-            selfSigned: true, 
-            pluginTimeout: 240, 
-            servicesToCreate: [
-              [name: 'music-database', type: 'p-mysql', plan: '100mb', resetService: true]
-            ],
-            envVars: [
-              [key: 'FOO', value: 'bar']
-            ],
-            manifestChoice: [
-                manifestFile: 'manifest.yml'
-            ]
-        ) */
-        
-        //pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'nanda-pcf', organization: 'nsreekala-PAL-JAN8', selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.cumuluslabs.io'
         pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'pcf-credential', organization: 'sunil-khobragade', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.dev.digifabricpcf.com'
-    }
-    
-    stage('Notify'){
-        prinln(currentBuild.result)        
     }
 }
