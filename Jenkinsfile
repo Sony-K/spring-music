@@ -5,13 +5,20 @@ node('master') {
     }
     stage('Build') {
         println("Entering Build Stage")
-         if (isUnix()) {
-                println("UNIX Build Stage")
-                sh './gradlew clean build'
-            } else {
-                println("WIN Build Stage using cygwin")
-                sh 'gradlew clean build -x test'
-            }
+        try{
+             if (isUnix()) {
+                    println("UNIX Build Stage")
+                    sh './gradlew clean build'
+                } else {
+                    println("WIN Build Stage using cygwin")
+                    sh 'gradlew clean build -x test'
+                }
+                 currentBuild.result = 'SUCCESS'
+         }catch(err){
+           currentBuild.result = 'FAILURE'
+            echo "Gradle Build failed"
+            echo "Caught exception: ${err}"
+         }
     }
     stage('Test') {
         println("Entering Test Stage")
@@ -44,11 +51,11 @@ node('master') {
         }
     }
     stage('Deploy') {
-        /* when {
+        when {
             expression {
                 currentBuild.result = 'SUCCESS'
             }
-        }  */
+        }
         println("Entering Deploy Stage")
         pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'pcf-credential', organization: 'sunil-khobragade', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.dev.digifabricpcf.com'
     }
