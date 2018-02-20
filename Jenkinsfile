@@ -63,6 +63,7 @@ node('master') {
                 echo "CF Deploy failed"
                 echo "Caught exception: ${err}"
             }
+         // sometimes get NoChannelException error hence commented it
         //pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'pcf-credential', organization: 'sunil-khobragade', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.dev.digifabricpcf.com'
     }
 }
