@@ -52,6 +52,17 @@ node('master') {
     }
     stage('Deploy') {
         println("Entering Deploy Stage")
-        pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'pcf-credential', organization: 'sunil-khobragade', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.dev.digifabricpcf.com'
+         try{
+               sh '''
+                 cf create-service p-msql 100mb music-database
+               '''
+               sh '''
+                  cf push
+               '''
+            } catch(err){
+                echo "CF Deploy failed"
+                echo "Caught exception: ${err}"
+            }
+        //pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'pcf-credential', organization: 'sunil-khobragade', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.dev.digifabricpcf.com'
     }
 }
