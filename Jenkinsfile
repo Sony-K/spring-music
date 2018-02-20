@@ -54,7 +54,7 @@ node('master') {
         println("Entering Deploy Stage")
          try{
                sh '''
-                 cf create-service p-msql 100mb music-database
+                 cf create-service p-mysql 100mb music-database
                '''
                sh '''
                   cf push
