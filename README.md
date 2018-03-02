@@ -104,4 +104,59 @@ In `build.gradle`, uncomment the line `compile files('libs/ojdbc8.jar')` or `com
 #### Docker Compose
  You need to specify one of MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD
 
+
+ root@ef56004d1148:/# mysql -uroot -p
+ Enter password:
+ Welcome to the MySQL monitor.  Commands end with ; or \g.
+ Your MySQL connection id is 45
+ Server version: 5.7.21 MySQL Community Server (GPL)
+
+ Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+ Oracle is a registered trademark of Oracle Corporation and/or its
+ affiliates. Other names may be trademarks of their respective
+ owners.
+
+ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+ mysql> show databases;
+ +--------------------+
+ | Database           |
+ +--------------------+
+ | information_schema |
+ | music              |
+ | mysql              |
+ | performance_schema |
+ | sys                |
+ +--------------------+
+ 5 rows in set (0.00 sec)
+
+ mysql> use music;
+ Reading table information for completion of table and column names
+ You can turn off this feature to get a quicker startup with -A
+
+ Database changed
+ mysql> select * from music
+     -> ;
+ ERROR 1146 (42S02): Table 'music.music' doesn't exist
+ mysql> show tables;
+ +-----------------+
+ | Tables_in_music |
+ +-----------------+
+ | album           |
+ +-----------------+
+ 1 row in set (0.00 sec)
+
+ mysql> select * from albums;
+ ERROR 1146 (42S02): Table 'music.albums' doesn't exist
+ mysql> select * from album;
+
+  List of records of album
+
+ mysql> exit
+ Bye
+ root@ef56004d1148:/# exit
+ exit
+
+
  https://stackoverflow.com/questions/35510964/unable-to-connect-mysql-container-to-tomcat-container-in-docker
