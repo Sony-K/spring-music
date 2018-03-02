@@ -102,7 +102,13 @@ In `build.gradle`, uncomment the line `compile files('libs/ojdbc8.jar')` or `com
 
 
 #### Docker Compose
+ Create the docker-compose.yml file
+
  You need to specify one of MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD
+
+ The code in the MySqlLocalDataSourceConfig.java is changed to jdbcurl to pick the container-name running the mysql
+
+  -- createDataSource("jdbc:mysql://mysql-container/music", "com.mysql.jdbc.Driver", "root", "sunil123");
 
 
  root@ef56004d1148:/# mysql -uroot -p
