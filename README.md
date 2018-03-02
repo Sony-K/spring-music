@@ -103,3 +103,5 @@ In `build.gradle`, uncomment the line `compile files('libs/ojdbc8.jar')` or `com
 
 #### Docker Compose
  You need to specify one of MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD
+
+ https://stackoverflow.com/questions/35510964/unable-to-connect-mysql-container-to-tomcat-container-in-docker
