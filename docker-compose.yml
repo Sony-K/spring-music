@@ -2,19 +2,19 @@ version: '3'
 services:
   db:
     image: mysql:latest
-    ports:
-     - 3306:3306
+    container_name: mysql-container
     restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD:
+      MYSQL_ROOT_PASSWORD: sunil123
   spring-music:
     build: .
+    container_name: spring-music-container
     links:
-     - db
-    depends_on:
-     - db
+     - db:mysql-container
     ports:
      - 8090:8080
     tty: true
     stdin_open: true
     restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql-local
