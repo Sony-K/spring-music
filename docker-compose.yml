@@ -1,6 +1,6 @@
 version: '3'
 services:
-  db:
+  mysql-container:
     image: mysql:latest
     container_name: mysql-container
     restart: always
@@ -9,12 +9,16 @@ services:
   spring-music:
     build: .
     container_name: spring-music-container
-    links:
-     - db:mysql-container
+    depends_on:
+     - mysql-container
     ports:
      - 8090:8080
     tty: true
     stdin_open: true
     restart: always
+    volumes:
+     - spring-music:/var/logs/spring-music
     environment:
       SPRING_PROFILES_ACTIVE: mysql-local
+volumes:
+ spring-music:

@@ -166,3 +166,11 @@ In `build.gradle`, uncomment the line `compile files('libs/ojdbc8.jar')` or `com
 
 
  https://stackoverflow.com/questions/35510964/unable-to-connect-mysql-container-to-tomcat-container-in-docker
+
+# Docker container folder structure
+
+D:\S2-Course\spring-music>docker exec -ti 5e3edf7a11de bash
+root@5e3edf7a11de:/# ls
+bin  boot  dev  docker-entrypoint-initdb.d  entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@5e3edf7a11de:/#
+
