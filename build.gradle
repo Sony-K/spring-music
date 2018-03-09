@@ -91,7 +91,7 @@ uploadArchives {
                 authentication(userName: "admin", password: "admin123")
             }
 
-            snapshotRepository(url: "http://localhost:8071/repository/maven-snapshots-repo/") {
+            snapshotRepository(url: "http://localhost:8071/repository/maven-snapshot-repo/") {
                 authentication(userName: "admin", password: "admin123")
             }
             pom.version = "1.0"
