@@ -3,6 +3,12 @@ applications:
 - name: spring-music
   memory: 1G
   instances: 1
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
   path: build/libs/spring-music.jar
   routes:
   - route: sony.cfapps.io
+  env:
+    email: user@gmail.com
+  services:
+  - spring-music-mysql
+  - spring-music-autoscalar
