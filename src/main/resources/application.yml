@@ -7,8 +7,11 @@ management:
   security:
     enabled: false
 security:
- basic:
-  enabled: true
- user:
-  name: user
-  password: demo
+ oauth2:
+  client:
+   client-id: 1f3c9156-0d3b-4c3e-8677-0dc77c68f1d4
+   client-secret: 7af11e3b-da68-449c-b9f9-e7489940d538
+  resource:
+   token-info-uri: http://localhost:8080/oauth/check_token
+server:
+ port: 8090
